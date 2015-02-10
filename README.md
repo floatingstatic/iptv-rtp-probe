@@ -10,7 +10,7 @@ as well as a centralized MySQL database
 Setting up a probe:
 
 ````
-apt-get install -y build-essential smcroute python-mysqldb python-pip
+apt-get install -y build-essential smcroute python-mysqldb python-pip git
 pip install ConfigParser
 
 cd /usr/local/src
