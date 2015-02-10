@@ -20,9 +20,18 @@ cd rtptools-1.20
 ./confgure
 make
 make install
+
+cd /root
+git clone https://github.com/killminus9/iptv-rtp-probe.git
+
+````
+Tell iptv-rtp-probe where your MySQL database lives:
+````
+nano /root/iptv-rtp-probe/parse-rtp.cfg
 ````
 
-It is assumed this repo is cloned to /root
+
+
 
 Join a multicast group:
 ````
