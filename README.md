@@ -44,7 +44,7 @@ netstat -g
 ````
 Start monitoring an individual RTP stream (starts rtpdump, runs the python script after 1 minute of RTP packet capture, starts a new instance of rtpdump, etc.)
 ````
-cd /root
+cd /root/iptv-rtp-probe
 ./monitor-rtp-stream.sh 239.192.37.30 &
 ````
 
@@ -53,6 +53,6 @@ and monitor the channels specified in the script and start the monitor-rtp-strea
 
 To run the startup script:
 ````
-cd /root
+cd /root/iptv-rtp-probe
 ./monitor-start.sh
 ````
