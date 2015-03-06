@@ -171,7 +171,7 @@ outoforder = 0
 
 # Load in config file data
 conf = ConfigParser.RawConfigParser()
-conf.read('parse-rtp.cfg')
+conf.read('/root/iptv-rtp-probe/parse-rtp.cfg')
 
 sqlhost = conf.get('database', 'host')
 sqluser = conf.get('database', 'user')
