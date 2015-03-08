@@ -1,0 +1,60 @@
+---
+#
+# =========================================================
+# Install dependencies from apt and pip
+# =========================================================
+- name: Install iptv-rtp-probe dependencies
+  hosts: iptv-probes
+  sudo: True
+  tags: packages
+  tasks: 
+    - name: Install Packages
+      apt: name={{item}} state=installed update_cache=yes
+      with_items:
+        - build-essential 
+        - smcroute
+        - python-mysqldb 
+        - python-pip
+        - git
+
+    - name: pip install ConfigParser
+      pip: name=ConfigParser
+
+#
+# =========================================================
+# Install RTPTools from source
+# =========================================================
+- name: RTPTools Install
+  hosts: iptv-probes
+  sudo: True
+  tags: rtptools
+  vars:
+    rtp_tools_version: "1.20"
+  tasks:
+    - name: Download RTPTools Source
+      get_url: url=http://www.cs.columbia.edu/irt/software/rtptools/download/rtptools-{{ rtp_tools_version }}.tar.gz dest=/usr/local/src/
+
+    - name: Unpack RTPTools source files
+      shell: cd /usr/local/src && tar -xzvf rtptools-{{ rtp_tools_version }}.tar.gz creates=/usr/local/src/rtptools-{{ rtp_tools_version }}
+
+    - name: Configure RTPTools
+      shell: cd /usr/local/src/rtptools-{{ rtp_tools_version }} && ./configure creates=/usr/local/src/rtptools-{{ rtp_tools_version }}/Makefile
+
+    - name: Make RTPTools
+      shell: cd /usr/local/src/rtptools-{{ rtp_tools_version }} && make creates=/usr/local/src/rtptools-{{ rtp_tools_version }}/rtpdump
+
+    - name: Make Install RTPTools
+      shell: cd /usr/local/src/rtptools-{{ rtp_tools_version }} && make install creates=/usr/local/bin/rtpdump
+
+#
+# =========================================================
+# GIT clone iptv-rtp-probe
+# =========================================================
+- name: Grab iptv-rtp-probe scripts from github
+  hosts: iptv-probes
+  sudo: True
+  tags: install-probe
+  tasks:
+    - name: git clone iptv-rtp-probe to /root/iptv-rtp-probe
+      git: repo=git://github.com/killminus9/iptv-rtp-probe.git dest=/root/iptv-rtp-probe accept_hostkey=yes
+
