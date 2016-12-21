@@ -22,7 +22,7 @@ make
 make install
 
 cd /root
-git clone https://github.com/killminus9/iptv-rtp-probe.git
+git clone https://github.com/floatingstatic/iptv-rtp-probe.git
 
 ````
 (As an alternative to the above commands you can use the included iptv-rtp-probe.yml Ansible playbook)

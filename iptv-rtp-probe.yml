@@ -56,5 +56,5 @@
   tags: install-probe
   tasks:
     - name: git clone iptv-rtp-probe to /root/iptv-rtp-probe
-      git: repo=git://github.com/killminus9/iptv-rtp-probe.git dest=/root/iptv-rtp-probe accept_hostkey=yes
+      git: repo=git://github.com/floatingstatic/iptv-rtp-probe.git dest=/root/iptv-rtp-probe accept_hostkey=yes
 
